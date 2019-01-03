@@ -7,35 +7,6 @@ import Graph from '../../components/graph';
 import style from './style';
 
 export default class Svg_Graph extends Component {
-    createRandomData() {
-        // This function creates data that doesn't look entirely random
-        /*  const data = []
-         for (let x = 0; x <= 5; x++) {
-           const random = Math.random();
-           const temp = data.length > 0 ? data[data.length-1].y : 50;
-           const y = random >= .45 ? temp + Math.floor(random * 20) : temp - Math.floor(random * 20);
-           data.push({x,y});
-         }   */
-
-        const data = [{
-            x: 0,
-            y: 10
-        }, {
-            x: 1,
-            y: 30
-        }, {
-            x: 3,
-            y: 50
-        }, {
-            x: 4,
-            y: 20
-        }, {
-            x: 5,
-            y: 0
-        }];
-        console.log("graph data", data);
-        return data;
-    }
 
     render() {
         return ( <
@@ -70,10 +41,7 @@ export default class Svg_Graph extends Component {
 }
 
 
-/* {70,800}
-{50,600}
-{30,900}
-{20,655} */
+
 
 
 

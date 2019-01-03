@@ -1,6 +1,6 @@
-import { h, Component } from 'preact';
-import style from "./style";
+import { Component, h } from 'preact';
 
+import style from "./style";
 
 class Graph extends Component {
     getMinX() {
@@ -36,56 +36,8 @@ class Graph extends Component {
         return (svgHeight - (y / this.getMaxY() * svgHeight));
     }
 
-    makeAxis() {
-        const minX = this.getMinX(), maxX = this.getMaxX();
-        const minY = this.getMinY(), maxY = this.getMaxY();
-        /* console.log("MINX", this.getSvgX(minX));
-        console.log("MINY", this.getSvgY(minY));
-        console.log("MAXX", this.getSvgX(maxX));
-        console.log("MAXY", this.getSvgY(maxY));
-        console.log(this.getSvgY(minY) - (2 * (this.getSvgY(minY) / 5))); */
-        return (
-            <g>
-                <g class={style.linechart_axis}>
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY)}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(minY)} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY) - (this.getSvgY(minY) / 5)}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(minY) - (this.getSvgY(minY) / 5)} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY) - (2 * (this.getSvgY(minY) / 5))}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(minY) - (2 * (this.getSvgY(minY) / 5))} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY) - (3 * (this.getSvgY(minY) / 5))}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(minY) - (3 * (this.getSvgY(minY) / 5))} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY) - (4 * (this.getSvgY(minY) / 5))}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(minY) - (4 * (this.getSvgY(minY) / 5))} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(maxY)}
-                        x2={this.getSvgX(maxX)} y2={this.getSvgY(maxY)} stroke="black" />
-                    <line
-                        x1={this.getSvgX(minX)} y1={this.getSvgY(minY)}
-                        x2={this.getSvgX(minX)} y2={this.getSvgY(maxY)} stroke="black" />
-                </g>
-
-                <g class={style.textGroup} text-anchor="end">
-                    <text x={this.getSvgX(minX) - 1} y={this.getSvgY(maxY)} alignment-baseline="middle">1000</text>
-                    <text x={this.getSvgX(minX) - 1} y={this.getSvgY(minY) - (4 * (this.getSvgY(minY) / 5))} alignment-baseline="middle">900</text>
-                    <text x={this.getSvgX(minX)} y={this.getSvgY(minY) - (3 * (this.getSvgY(minY) / 5))}>750</text>
-                    <text x={this.getSvgX(minX)} y={this.getSvgY(minY) - (2 * (this.getSvgY(minY) / 5))}>600</text>
-                    <text x={this.getSvgX(minX)} y={this.getSvgY(minY) - (1 * (this.getSvgY(minY) / 5))}>450</text>
-                    <text x={this.getSvgX(minX)} y={this.getSvgY(minY)}>300</text>
-                </g>
-
-            </g>
-        );
-    }
-
     makePolygon() {
         const { data, color } = this.props;
-        //    let pathD = "M " + this.getSvgX(data[0].x) + " " + this.getSvgY(data[0].y) + " ";
         let pathD = " ";
         var r = data.map((point, i) => {
             var d = this.getSvgX(point.x) + "," + this.getSvgY(point.y) + " ";
